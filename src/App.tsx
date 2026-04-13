@@ -1,121 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const environment = import.meta.env.VITE_PUBLIC_ENVIRONMENT || "local";
+const version = import.meta.env.VITE_PUBLIC_VERSION || "dev-local";
+const notes = [
+"Pipeline de calidad activo",
+"Promoción controlada de develop a staging",
+"Despliegue de staging en GitHub Pages"
+];
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+export default function App() {
+return (
+<main className="shell">
+<section className="hero">
+<p className="eyebrow">Laboratorio 1 · Despliegue con GitHub</p>
+<h1>Release Board V1</h1>
+<p className="hero-copy">
+Aplicación mínima para practicar pipeline, despliegue y promoción entre
+entornos.
+</p>
+</section>
+<section className="grid">
+<article className="card card-accent">
+<h2>Entorno actual</h2>
+<p className="badge">{environment}</p>
+<p>Este valor cambia en cada build y nos ayuda a verificar qué entorno
+estamos viendo.</p>
+</article>
+<article className="card">
+<h2>Versión visible</h2>
+<p className="mono">{version}</p>
+<p>Usaremos el SHA corto del commit para identificar qué versión llegó a
+staging.</p>
+</article>
+<article className="card">
+<h2>Qué estamos practicando</h2>
+<ul>
+{notes.map((item) => (
+<li key={item}>{item}</li>
+))}
+</ul>
+</article>
+</section>
+</main>
+);
 }
-
-export default App
